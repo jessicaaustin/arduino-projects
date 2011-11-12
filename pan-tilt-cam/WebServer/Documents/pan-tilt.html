@@ -1,0 +1,100 @@
+<html>
+    <head>
+        <title>Pan/Tilt Camera Control</title>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+        <script type="text/javascript">
+            // send the input to the cgi script
+            // note: sending 3x the input for every keypress, to make the movement smoother
+            var submitInput = function(input) {
+                $.post("/cgi-bin/pan-tilt.cgi?" + input + input + input);
+            };
+            
+            // submit input when someone presses a key down
+            $(document).keydown(function(event) {
+                console.log(event.keyCode);
+                switch(event.keyCode) {
+                   case 82:
+                    submitInput('r');
+                    break;
+                  case 83:
+                    submitInput('sss');
+                    break;
+                  case 68:
+                    submitInput('ddd');
+                    break;
+                  case 69:
+                    submitInput('eee');
+                    break;
+                  case 88:
+                    submitInput('xxx');
+                    break;
+                  case 37:
+                    submitInput('sss');
+                    break;
+                  case 39:
+                    submitInput('ddd');
+                    break;
+                  case 38:
+                    submitInput('eee');
+                    break;
+                  case 40:
+                    submitInput('xxx');
+                    break;
+                  default:
+                }
+            });
+        </script>
+        <style type="text/css">
+        table tr, table td {
+            border: 1px solid black;
+            padding: 5px;
+            width: 25px;
+            height: 35px;
+            text-align: center;
+        }
+        table {
+            float: left;
+            margin: 5px;
+        }
+        </style>
+    </head>
+    <body>
+        <h1>Pan/Tilt Camera Control</h1>
+        <div>
+        <table>
+          <tr>
+            <td></td>
+            <td>&uarr;</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>&larr;</td>
+            <td>r</td>
+            <td>&rarr;</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>&darr;</td>
+            <td></td>
+          </tr>
+        </table>
+        <table>
+          <tr>
+            <td></td>
+            <td>e</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>s</td>
+            <td>r</td>
+            <td>d</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>x</td>
+            <td></td>
+          </tr>
+        </table>
+        </div>
+    </body>
+</html>
